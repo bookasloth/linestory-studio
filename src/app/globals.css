@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------
+   Linestory Studio — design tokens
+   Palette drawn from the woven logo: deep turquoise + gold/amber
+   on a warm architectural off-white.
+----------------------------------------------------------------*/
+@theme {
+  --color-cream: #f5f2ea;
+  --color-cream-deep: #ece7db;
+  --color-ink: #141414;
+  --color-ink-soft: #3a3a38;
+  --color-muted: #5f5c52; /* darkened to pass WCAG AA on cream */
+
+  --color-turq: #1f97a6;
+  --color-turq-deep: #146370;
+  --color-turq-bright: #2cbccd;
+
+  --color-gold: #f2b705; /* fills / lines only — fails AA as small text */
+  --color-gold-deep: #7d5e00; /* deep gold, AA-safe for numerals on cream */
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-cream);
+  --foreground: var(--color-ink);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Lenis handles smoothing */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  /* `clip` (not `hidden`) — hidden forces overflow-y to `auto`, which turns
+     body into a scroll container and jams Lenis smooth scroll. clip keeps
+     overflow-y visible so the window remains the single scroller. */
+  overflow-x: clip;
+}
+
+/* Lenis smooth-scroll baseline (from the Lenis docs) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+::selection {
+  background: var(--color-turq);
+  color: var(--color-cream);
+}
+
+/* Hide the native cursor only once the custom cursor has mounted,
+   and only on devices that actually have a fine pointer. The custom
+   cursor becomes visible under the same condition, so the two stay in
+   lockstep at every viewport width (no dead zone below md). */
+@media (hover: hover) and (pointer: fine) {
+  html.cursor-ready,
+  html.cursor-ready * {
+    cursor: none;
+  }
+  html.cursor-ready .custom-cursor {
+    display: block;
+  }
+}
+
+/* Visible keyboard focus for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-turq-deep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* SVG bars must scale about their own center */
+.weave-bar {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Simple prose styling for legal pages (no typography plugin needed) */
+.legal {
+  max-width: 46rem;
+  color: var(--color-ink-soft);
+  line-height: 1.7;
+}
+.legal h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  color: var(--color-ink);
+  margin: 2.75rem 0 0.85rem;
+}
+.legal p {
+  margin: 0 0 1rem;
+}
+.legal ul {
+  margin: 0 0 1rem;
+  padding-left: 1.15rem;
+  list-style: disc;
+}
+.legal li {
+  margin: 0.35rem 0;
+}
+.legal a {
+  color: var(--color-turq-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.legal strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+/* Thin grain/paper feel without an image asset */
+.paper::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: radial-gradient(
+    rgba(20, 20, 20, 0.035) 1px,
+    transparent 1px
+  );
+  background-size: 3px 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

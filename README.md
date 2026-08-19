@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Linestory Studio
 
-## Getting Started
+Marketing & portfolio website for **Linestory Studio** — an architecture and interior design practice. _Every line tells a story._
 
-First, run the development server:
+Built as a fully static **Next.js** site (no database, no backend) with GSAP motion, a woven brand motif drawn from the logo, and a complete SEO setup.
+
+🔗 **Live:** https://www.linestorystudio.in <!-- update once deployed -->
+
+---
+
+## Tech stack
+
+| | |
+|---|---|
+| Framework | Next.js 16 (App Router, `output: 'export'` — static) |
+| Language | TypeScript, React 19 |
+| Styling | Tailwind CSS v4 (CSS-first tokens) |
+| Motion | GSAP + `@gsap/react`, Lenis smooth scroll |
+| Fonts | Fraunces (display) + Manrope (text), self-hosted via `next/font` |
+| Analytics | Plausible (privacy-friendly, cookieless) |
+| Forms | Formspree (no backend) |
+| Hosting | Any static host (Vercel / Netlify / Cloudflare Pages) |
+
+## Features
+
+- Woven line-draw hero + per-route page transitions (GSAP)
+- Filterable project **index** with cursor-tracked preview
+- Cinematic project detail pages (`generateStaticParams`)
+- Studio, Clients, Contact, custom 404, Privacy & Terms
+- SEO: Open Graph + Twitter cards, build-time branded OG image, `sitemap.xml`, `robots.txt`, JSON-LD (Organization + per-project)
+- Accessibility: WCAG-AA contrast, focus rings, full `prefers-reduced-motion` support
+- Deterministic online image placeholders (swap for real photos anytime)
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run build      # static site → ./out
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Deploy the `out/` folder to any static host, or connect the repo to Vercel/Netlify (framework auto-detected).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Editing content
 
-## Learn More
+All content lives in plain data files — no CMS needed. Edit and redeploy.
 
-To learn more about Next.js, take a look at the following resources:
+| What | Where |
+|------|-------|
+| Projects | `src/data/projects.ts` |
+| Studio info, clients, testimonials, team, awards | `src/data/site.ts` |
+| Site name / URL / contact | `src/data/site.ts` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Drop-in assets (three swaps)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Logo** — add `/public/logo.png`, set `LOGO_SRC = "/logo.png"` in `src/components/Logo.tsx` (currently a woven-mark stand-in).
+2. **Project photos** — add files under `/public/projects/<slug>/` and list them in each project's `images[]`. Until then, deterministic architecture placeholders render automatically (`src/lib/images.ts`).
+3. **Contact form** — set `FORM_ENDPOINT` in `src/components/contact/ContactForm.tsx` to your Formspree endpoint.
 
-## Deploy on Vercel
+Also fill the `[bracketed]` placeholders in `src/app/privacy/page.tsx` and `src/app/terms/page.tsx`, and confirm the domain in `src/data/site.ts`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/            routes (home, work, studio, clients, contact, privacy, terms)
+    work/[slug]/  project detail (static-generated)
+    sitemap.ts, robots.ts, opengraph-image.tsx, icon.svg
+  components/     Nav, Footer, Hero, WeaveMark, Media, Reveal, Cursor, …
+  data/           projects.ts, site.ts   (all editable content)
+  lib/            images.ts (placeholder pipeline)
+```
+
+## Notes
+
+- `output: 'export'` means images are unoptimized — pre-compress real photos to WebP before adding.
+- Privacy/Terms are generic starters; have them reviewed by a legal professional before publishing.
+- Plausible requires a site registered at plausible.io for `linestorystudio.in`, or the script simply no-ops.
+
+---
+
+© Linestory Studio. All rights reserved.
