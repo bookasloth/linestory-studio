@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+
 /**
  * Media — renders a real photo when provided, otherwise a branded, on-brand
  * placeholder. If the primary image fails to load (e.g. LoremFlickr hiccup),
@@ -21,21 +23,30 @@ export default function Media({
   /** Set on the LCP/hero image so it loads eagerly instead of lazily. */
   priority?: boolean;
 }) {
+  const ref = useRef<HTMLImageElement>(null);
+  const seed = encodeURIComponent(label ?? alt ?? String(index));
+  const fallback = (img: HTMLImageElement) => {
+    if (img.dataset.fallback) return; // already tried — stop, avoid loop
+    img.dataset.fallback = "1";
+    img.src = `https://picsum.photos/seed/${seed}-${index}/1200/1500`;
+  };
+
+  // Eager images can fail before hydration attaches onError — catch those.
+  useEffect(() => {
+    const img = ref.current;
+    if (img?.complete && img.naturalWidth === 0) fallback(img);
+  });
+
   if (src) {
-    const seed = encodeURIComponent(label ?? alt ?? String(index));
     // eslint-disable-next-line @next/next/no-img-element
     return (
       <img
+        ref={ref}
         src={src}
         alt={alt}
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
-        onError={(e) => {
-          const img = e.currentTarget;
-          if (img.dataset.fallback) return; // already tried — stop, avoid loop
-          img.dataset.fallback = "1";
-          img.src = `https://picsum.photos/seed/${seed}-${index}/1200/1500`;
-        }}
+        onError={(e) => fallback(e.currentTarget)}
         className={`h-full w-full object-cover ${className}`}
       />
     );
