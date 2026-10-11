@@ -6,7 +6,7 @@ import { useState } from "react";
  * No backend needed — posts to Formspree (or any form endpoint).
  * Replace FORM_ENDPOINT with your own: https://formspree.io/f/xxxxxxx
  */
-const FORM_ENDPOINT = "https://formspree.io/f/your-form-id";
+const FORM_ENDPOINT = "/api/contact/"; // trailing slash: avoids a redirect (trailingSlash: true) // Hostinger SMTP, see app/api/contact
 
 type State = "idle" | "sending" | "done" | "error";
 
@@ -46,6 +46,8 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-6">
+      {/* honeypot — hidden from people, bots fill it */}
+      <input name="company" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
       <Field label="Name" name="name" required />
       <Field label="Email" name="email" type="email" required />
       <Field label="Project location" name="location" />
