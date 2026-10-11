@@ -44,6 +44,8 @@ export async function POST(req: Request) {
     return Response.json({ ok: true });
   } catch (err) {
     console.error("contact mail failed", err);
-    return Response.json({ error: "Could not send right now." }, { status: 502 });
+    // Error code only (e.g. EAUTH, ECONNECTION) — no credentials or server text.
+    const code = (err as { code?: string }).code ?? "UNKNOWN";
+    return Response.json({ error: "Could not send right now.", code }, { status: 502 });
   }
 }
