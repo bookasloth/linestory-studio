@@ -45,6 +45,7 @@ export default function ContactPage() {
               <p className="font-display text-2xl font-light text-ink">
                 {site.location}
               </p>
+              <p className="mt-2 max-w-xs text-sm text-muted">{site.address}</p>
             </Detail>
             <Detail label="Follow">
               <div className="flex gap-5">

@@ -67,6 +67,8 @@ const orgJsonLd = {
   telephone: site.phone,
   address: {
     "@type": "PostalAddress",
+    streetAddress: site.address,
+    postalCode: "440027",
     addressLocality: "Nagpur",
     addressRegion: "Maharashtra",
     addressCountry: "IN",

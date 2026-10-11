@@ -2,13 +2,14 @@ export const site = {
   name: "Linestory Studio",
   url: "https://www.linestorystudio.in", // canonical origin (no trailing slash)
   email: "hello@linestory.studio",
-  phone: "+91 98765 43210",
-  location: "Nagpur · Mumbai, India",
+  phone: "+91 86682 76513",
+  location: "Nagpur, Maharashtra",
+  address:
+    "301, Third Floor, Mauli Niwas, Plot No. 54, Banarjee Layout, Nalanda Nagar, Rameshwari, Nagpur, Maharashtra 440027",
   tagline: "Every line tells a story.",
   socials: [
-    { label: "Instagram", href: "https://instagram.com" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
-    { label: "Behance", href: "https://behance.net" },
+    { label: "Instagram", href: "https://www.instagram.com/linestorystudio" },
+    { label: "Facebook", href: "https://www.facebook.com/linestorystudio" },
   ],
 };
 
