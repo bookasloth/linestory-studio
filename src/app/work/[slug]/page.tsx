@@ -6,6 +6,53 @@ import { projectPhotos } from "@/lib/images";
 import { site } from "@/data/site";
 import Media from "@/components/Media";
 import { Reveal } from "@/components/Reveal";
+import path from "node:path";
+import sharp from "sharp";
+
+type Photo = { src: string; alt: string; ratio: number };
+
+/** Real width/height of a local /public photo, read at build time. */
+async function aspect(src: string) {
+  if (!src.startsWith("/")) return 4 / 3; // remote placeholder
+  try {
+    const m = await sharp(path.join(process.cwd(), "public", src)).metadata();
+    return m.width && m.height ? m.width / m.height : 4 / 3;
+  } catch {
+    return 4 / 3;
+  }
+}
+
+/**
+ * Justified rows: `per` photos share a row at equal height; each one's width
+ * follows its real aspect ratio (flex-grow = ratio), so nothing is cropped.
+ */
+function Rows({ items, per, className }: { items: Photo[]; per: number; className: string }) {
+  // Row sizes; never leave a lone photo on the last row (3s → …,2,2 ; 2s → …,3).
+  const sizes: number[] = [];
+  let left = items.length;
+  while (left > 0) {
+    if (per === 3 && left === 4) { sizes.push(2, 2); break; }
+    if (per === 2 && left === 3) { sizes.push(3); break; }
+    sizes.push(Math.min(per, left));
+    left -= per;
+  }
+  let at = 0;
+  const rows = sizes.map((n) => items.slice(at, (at += n)));
+  return (
+    <div className={`flex-col gap-4 ${className}`}>
+      {rows.map((row, r) => (
+        <Reveal key={r} className="flex gap-4">
+          {row.map((ph) => (
+            <div key={ph.src} style={{ flex: `${ph.ratio} 1 0` }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={ph.src} alt={ph.alt} loading="lazy" className="block h-auto w-full rounded-md" />
+            </div>
+          ))}
+        </Reveal>
+      ))}
+    </div>
+  );
+}
 
 export function generateStaticParams() {
   return projectSlugs().map((slug) => ({ slug }));
@@ -44,7 +91,13 @@ export default async function ProjectPage({
   // [hero, ...gallery] — real photos if provided, else architecture placeholders.
   const photos = projectPhotos(p.slug, p.images, 4);
   const hero = photos[0];
-  const gallery = photos.slice(1);
+  const gallery = await Promise.all(
+    photos.map(async (src, i) => ({
+      src,
+      alt: `${p.title} — view ${i + 1}`,
+      ratio: await aspect(src),
+    }))
+  );
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -117,22 +170,11 @@ export default async function ProjectPage({
         </div>
       </section>
 
-      {/* Gallery */}
+      {/* Gallery — every photo incl. the hero, justified rows (3 / 2 / 1). */}
       <section className="mx-auto max-w-7xl px-6 pb-24">
-        {/* Masonry via CSS columns — full photos at their own proportions, no cropping. */}
-        <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
-          {gallery.map((img, i) => (
-            <Reveal key={i} className="mb-4 break-inside-avoid">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={img}
-                alt={`${p.title} — view ${i + 1}`}
-                loading="lazy"
-                className="block h-auto w-full rounded-md"
-              />
-            </Reveal>
-          ))}
-        </div>
+        <Rows items={gallery} per={3} className="hidden lg:flex" />
+        <Rows items={gallery} per={2} className="hidden sm:flex lg:hidden" />
+        <Rows items={gallery} per={1} className="flex sm:hidden" />
       </section>
 
       {/* Next project */}
