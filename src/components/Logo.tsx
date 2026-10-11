@@ -30,11 +30,16 @@ export default function Logo({ light = false }: { light?: boolean }) {
         )}
       </span>
       <span
-        className={`font-display text-lg font-normal tracking-[0.14em] ${
+        className={`flex flex-col items-center leading-none ${
           light ? "text-cream" : "text-ink"
         }`}
       >
-        LINESTORY
+        <span className="font-display text-lg font-normal tracking-[0.14em]">
+          LINESTORY
+        </span>
+        <span className="mt-1 text-[9px] font-medium tracking-[0.55em] opacity-70">
+          STUDIO
+        </span>
       </span>
     </Link>
   );
