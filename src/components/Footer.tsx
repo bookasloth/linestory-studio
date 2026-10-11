@@ -72,6 +72,16 @@ export default function Footer() {
         <div className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-cream/10 pt-6 text-xs text-cream/40 sm:flex-row">
           <p>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
+            {" "}— Handcrafted by humans of{" "}
+            {/* Followed link (no nofollow) by request. */}
+            <a
+              href="https://timewheel.co.in/website-design-company-in-nagpur"
+              target="_blank"
+              rel="noopener"
+              className="underline-offset-2 hover:text-gold hover:underline"
+            >
+              Timewheel Internet
+            </a>
           </p>
           <div className="flex gap-5">
             <Link href="/privacy" className="hover:text-gold">
