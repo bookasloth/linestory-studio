@@ -34,12 +34,12 @@ export default async function ProjectPage({
 
   const specs = [
     { k: "Location", v: p.location },
-    { k: "Year", v: String(p.year) },
+    { k: "Year", v: p.year && String(p.year) },
     { k: "Status", v: p.status },
     { k: "Discipline", v: p.discipline },
     { k: "Area", v: p.area },
     { k: "Client", v: p.client },
-  ];
+  ].filter((s) => s.v);
 
   // [hero, ...gallery] — real photos if provided, else architecture placeholders.
   const photos = projectPhotos(p.slug, p.images, 4);
@@ -51,8 +51,8 @@ export default async function ProjectPage({
     "@type": "CreativeWork",
     name: p.title,
     description: p.summary,
-    dateCreated: String(p.year),
-    locationCreated: { "@type": "Place", name: p.location },
+    dateCreated: p.year && String(p.year),
+    locationCreated: p.location && { "@type": "Place", name: p.location },
     creator: { "@type": "Organization", name: site.name, url: site.url },
     url: `${site.url}/work/${p.slug}`,
   };
@@ -72,7 +72,7 @@ export default async function ProjectPage({
         <div className="absolute bottom-0 left-0 w-full px-6 pb-12">
           <div className="mx-auto max-w-7xl">
             <span className="text-xs uppercase tracking-[0.3em] text-cream/80">
-              {p.discipline} · {p.location}
+              {[p.discipline, p.location].filter(Boolean).join(" · ")}
             </span>
             <h1 className="mt-3 font-display text-5xl font-light text-cream md:text-8xl">
               {p.title}
@@ -155,7 +155,7 @@ export default async function ProjectPage({
           {next.title}
         </p>
         <span className="mt-4 inline-block text-sm text-turq-deep">
-          {next.location} · {next.year}
+          {[next.location, next.year].filter(Boolean).join(" · ")}
         </span>
       </Link>
     </main>

@@ -141,7 +141,7 @@ export default function HomeWorks() {
                 {p.title}
               </h2>
               <p className="mt-1 text-xs uppercase tracking-[0.15em]">
-                {p.location}, {p.year}
+                {[p.location, p.year].filter(Boolean).join(", ") || p.discipline}
               </p>
             </div>
           </Link>

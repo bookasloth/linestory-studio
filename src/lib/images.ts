@@ -28,7 +28,10 @@ export function projectPhotos(
   provided: string[] = [],
   count = 4
 ): string[] {
-  if (provided.length) return provided;
+  if (provided.length)
+    return provided.map((p) =>
+      p.startsWith("/") ? `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${p}` : p
+    );
   const base = hash(slug);
   return Array.from(
     { length: count },

@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true }, // required for static export
   trailingSlash: true, // clean nested routes on static hosts
   basePath: basePath || undefined,
+  env: { NEXT_PUBLIC_BASE_PATH: basePath }, // plain <img> paths need it too
 };
 
 export default nextConfig;
