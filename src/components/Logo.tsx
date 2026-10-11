@@ -8,7 +8,7 @@ import WeaveMark from "./WeaveMark";
  * path — the image then replaces the WeaveMark stand-in everywhere at once.
  * Left null, the WeaveMark reproduces the same woven diamond in the meantime.
  */
-const LOGO_SRC: string | null = null; // e.g. "/logo.png"
+const LOGO_SRC: string | null = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-mark.png`;
 
 export default function Logo({ light = false }: { light?: boolean }) {
   return (

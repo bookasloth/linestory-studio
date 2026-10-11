@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import Logo from "@/components/Logo";
 import Media from "@/components/Media";
 import { nav, site } from "@/data/site";
 import { projects } from "@/data/projects";
@@ -57,10 +56,17 @@ export default function HomeWorks() {
   return (
     <div className="mx-auto flex max-w-[1320px] flex-col gap-12 px-6 py-12 md:flex-row md:gap-11 md:px-[60px] md:py-[60px]">
       <aside className="shrink-0 text-center md:sticky md:top-[60px] md:w-[280px] md:self-start md:text-left">
-        <div className="flex justify-center md:justify-start">
-          <Logo />
-        </div>
-        <p className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted">
+        <Link href="/" aria-label="Linestory Studio — home" className="inline-block">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo.png`}
+            alt="Linestory Studio"
+            width={160}
+            height={196}
+            className="h-auto w-[140px] md:w-[160px]"
+          />
+        </Link>
+        <p className="mt-4 text-[11px] uppercase tracking-[0.25em] text-muted">
           Architecture · Interior Design
         </p>
 

@@ -70,7 +70,10 @@ export default function Nav() {
 
         <nav className="hidden items-center gap-9 md:flex">
           {nav.map((item) => {
-            const active = pathname.startsWith(item.href);
+            const active =
+              item.href === "/"
+                ? pathname.startsWith("/work")
+                : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}

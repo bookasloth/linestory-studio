@@ -17,7 +17,7 @@ export const site = {
 };
 
 export const nav = [
-  { label: "Work", href: "/work" },
+  { label: "Work", href: "/" }, // homepage is the work index
   { label: "Studio", href: "/studio" },
   { label: "Clients", href: "/clients" },
   { label: "Contact", href: "/contact" },
@@ -41,22 +41,40 @@ export const services = [
 // Project clients (names as published on the work pages).
 export const clients = ["Eureka", "Greamio", "Saraswati Veg", "Bridge House"];
 
-// Real Google reviews (short excerpts, reviewer names not shown).
+// Real Google reviews, lightly trimmed from the Google Business Profile.
 export const testimonials = [
   {
-    quote: "Best portion of building is office — this is a brilliant work from architecture.",
-    name: "Google review",
-    role: "Verified Google reviewer",
+    quote:
+      "A true visionary, Kewal blends creativity with functionality in the most seamless way. His designs don't just shape buildings — they shape experiences. Every detail reflects care, purpose, and artistic brilliance.",
+    name: "Aditya Anil Waghmare",
+    role: "Google review",
   },
   {
-    quote: "Detailed, creative and understanding services available. Must get the service.",
-    name: "Google review",
-    role: "Verified Google reviewer",
+    quote:
+      "Kewal is an exceptional individual possesses remarkable skills and talents, making him one of the finest architects in Nagpur. He worked for more than 5 projects for me, and each time, he astounded with his ability to consistently deliver exceptional work.",
+    name: "Atul Warghane",
+    role: "Google review",
   },
   {
-    quote: "What a great architecture… at our budget… great work.",
-    name: "Google review",
-    role: "Verified Google reviewer",
+    quote:
+      "Very intelligent architect and knowledgeable about his work, very honest and punctual about timeline. Happy with his work.",
+    name: "Gautam Enterprise",
+    role: "Google review",
+  },
+  {
+    quote: "Best architect who understand the clients requirement with given budget.",
+    name: "Kunjan Nasre",
+    role: "Google review",
+  },
+  {
+    quote: "Detailed, Creative and understanding services available. Must get the Service.",
+    name: "Praveen Morpaka",
+    role: "Google review",
+  },
+  {
+    quote: "Practical approach with creative solutions.",
+    name: "Kunal Uke",
+    role: "Google review",
   },
 ];
 

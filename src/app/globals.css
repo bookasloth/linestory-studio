@@ -158,3 +158,15 @@ html.lenis body {
 /* Homepage sidebar carries contact info; drop the global footer there. */
 body:has(main.home) { background: #fff; }
 body:has(main.home) > footer { display: none; }
+
+/* Route transition (see app/template.tsx). */
+@keyframes curtain-up { to { transform: translateY(-100%); visibility: hidden; } }
+@keyframes mark-in { from { opacity: 0; transform: scale(0.9); } }
+@keyframes content-in { from { opacity: 0; transform: translateY(24px); } }
+.page-curtain { animation: curtain-up 0.8s cubic-bezier(0.87, 0, 0.13, 1) 0.55s forwards; }
+.curtain-mark { animation: mark-in 0.4s ease-out both; }
+.page-content { animation: content-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both; }
+@media (prefers-reduced-motion: reduce) {
+  .page-curtain { display: none; }
+  .page-content { animation: none; }
+}
