@@ -98,7 +98,7 @@ export default function StudioPage() {
         </Reveal>
         <RevealGroup className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4">
           {team.map((m, i) => (
-            <a key={m.name} href={m.href} target="_blank" rel="noopener noreferrer" data-cursor className="group">
+            <a key={m.name} href={m.href} target={m.href && "_blank"} rel="noopener noreferrer" data-cursor className="group">
               <div className="aspect-[4/5] overflow-hidden rounded-md bg-cream-deep">
                 <div className="h-full w-full transition-transform duration-700 group-hover:scale-105">
                   <Media alt={m.name} label={m.name} index={i} />
@@ -107,7 +107,9 @@ export default function StudioPage() {
               <h3 className="mt-4 font-display text-xl font-light text-ink">
                 {m.name}
               </h3>
-              <p className="text-sm text-muted">{m.role} · LinkedIn ↗</p>
+              <p className="text-sm text-muted">
+                {[m.role, m.href && "LinkedIn ↗"].filter(Boolean).join(" · ")}
+              </p>
             </a>
           ))}
         </RevealGroup>

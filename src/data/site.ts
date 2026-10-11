@@ -80,10 +80,12 @@ export const testimonials = [
 
 export const awards: { year: string; title: string }[] = [];
 
-export const team = [
+export const team: { name: string; role?: string; href?: string }[] = [
   {
     name: "Kewal Rewatkar",
     role: "Principal Architect",
     href: "https://www.linkedin.com/in/kewal-rewatkar-17095b119",
   },
+  { name: "Raghini Dhurve" },
+  { name: "Anshul Urkude" },
 ];
