@@ -6,6 +6,7 @@ import { projectPhotos } from "@/lib/images";
 import { site } from "@/data/site";
 import Media from "@/components/Media";
 import { Reveal } from "@/components/Reveal";
+import Lightbox from "@/components/work/Lightbox";
 import path from "node:path";
 import sharp from "sharp";
 
@@ -45,7 +46,13 @@ function Rows({ items, per, className }: { items: Photo[]; per: number; classNam
           {row.map((ph) => (
             <div key={ph.src} style={{ flex: `${ph.ratio} 1 0` }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={ph.src} alt={ph.alt} loading="lazy" className="block h-auto w-full rounded-md" />
+              <img
+                src={ph.src}
+                alt={ph.alt}
+                loading="lazy"
+                data-lb={items.indexOf(ph)}
+                className="block h-auto w-full cursor-zoom-in rounded-md transition-opacity hover:opacity-90"
+              />
             </div>
           ))}
         </Reveal>
@@ -172,9 +179,11 @@ export default async function ProjectPage({
 
       {/* Gallery — every photo incl. the hero, justified rows (3 / 2 / 1). */}
       <section className="mx-auto max-w-7xl px-6 pb-24">
-        <Rows items={gallery} per={3} className="hidden lg:flex" />
-        <Rows items={gallery} per={2} className="hidden sm:flex lg:hidden" />
-        <Rows items={gallery} per={1} className="flex sm:hidden" />
+        <Lightbox photos={gallery.map(({ src, alt }) => ({ src, alt }))}>
+          <Rows items={gallery} per={3} className="hidden lg:flex" />
+          <Rows items={gallery} per={2} className="hidden sm:flex lg:hidden" />
+          <Rows items={gallery} per={1} className="flex sm:hidden" />
+        </Lightbox>
       </section>
 
       {/* Next project */}
