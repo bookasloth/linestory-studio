@@ -88,4 +88,5 @@ export const team: { name: string; role?: string; href?: string }[] = [
   },
   { name: "Raghini Dhurve", role: "Intern" },
   { name: "Anshul Urkude", role: "Intern" },
+  { name: "Chaitanya Chikhale", role: "Intern" },
 ];
