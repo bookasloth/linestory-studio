@@ -54,6 +54,9 @@ export default function Nav() {
 
   const close = () => setOpen(false);
 
+  // Homepage carries its own sidebar nav.
+  if (pathname === "/") return null;
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${

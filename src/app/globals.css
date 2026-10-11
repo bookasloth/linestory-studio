@@ -154,3 +154,7 @@ html.lenis body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Homepage sidebar carries contact info; drop the global footer there. */
+body:has(main.home) { background: #fff; }
+body:has(main.home) > footer { display: none; }
