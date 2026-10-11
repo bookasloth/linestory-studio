@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import { site, nav } from "@/data/site";
+import SocialIcon from "@/components/SocialIcon";
 
 export default function Footer() {
   return (
@@ -58,9 +59,10 @@ export default function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm text-cream/60 transition-colors hover:text-gold"
+                  aria-label={s.label}
+                  className="text-cream/60 transition-colors hover:text-gold"
                 >
-                  {s.label}
+                  <SocialIcon label={s.label} />
                 </a>
               ))}
             </div>

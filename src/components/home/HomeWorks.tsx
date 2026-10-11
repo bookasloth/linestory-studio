@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import Media from "@/components/Media";
 import { nav, site } from "@/data/site";
+import SocialIcon from "@/components/SocialIcon";
 import { projects } from "@/data/projects";
 import { projectPhotos } from "@/lib/images";
 
@@ -116,14 +117,20 @@ export default function HomeWorks() {
           <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="block hover:text-ink">
             {site.phone}
           </a>
-          <a
-            href={site.socials[0].href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block hover:text-ink"
-          >
-            {site.socials[0].label}
-          </a>
+          <div className="flex justify-center gap-4 pt-2 md:justify-start">
+            {site.socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                className="hover:text-ink"
+              >
+                <SocialIcon label={s.label} className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
         </div>
       </aside>
 

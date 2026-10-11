@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import ContactForm from "@/components/contact/ContactForm";
 import { site } from "@/data/site";
+import SocialIcon from "@/components/SocialIcon";
 
 export const metadata: Metadata = {
   title: "Contact — Linestory Studio",
@@ -55,9 +56,10 @@ export default function ContactPage() {
                     href={s.href}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label={s.label}
                     className="text-ink-soft transition-colors hover:text-turq-deep"
                   >
-                    {s.label}
+                    <SocialIcon label={s.label} className="h-6 w-6" />
                   </a>
                 ))}
               </div>
