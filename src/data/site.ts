@@ -1,7 +1,7 @@
 export const site = {
   name: "Linestory Studio",
   url: "https://www.linestorystudio.in", // canonical origin (no trailing slash)
-  email: "hello@linestory.studio",
+  email: "hello.linestorystudio@gmail.com",
   phone: "+91 86682 76513",
   location: "Nagpur, Maharashtra",
   address:
