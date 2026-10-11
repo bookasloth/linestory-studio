@@ -37,7 +37,7 @@ export default function Logo({ light = false }: { light?: boolean }) {
         <span className="font-display text-lg font-normal tracking-[0.14em]">
           LINESTORY
         </span>
-        <span className="mt-1 text-[9px] font-medium tracking-[0.55em] opacity-70">
+        <span className="-mt-px text-[9px] font-medium tracking-[0.55em] opacity-70">
           STUDIO
         </span>
       </span>
