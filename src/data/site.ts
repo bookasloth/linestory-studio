@@ -46,7 +46,6 @@ export const clients = [
   "Fireblaze",
   "Rankbrain",
   "Saraswati Veg",
-  "Bridge House",
 ];
 
 // Real Google reviews, lightly trimmed from the Google Business Profile.
