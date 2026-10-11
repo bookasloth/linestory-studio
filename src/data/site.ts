@@ -86,6 +86,6 @@ export const team: { name: string; role?: string; href?: string }[] = [
     role: "Principal Architect",
     href: "https://www.linkedin.com/in/kewal-rewatkar-17095b119",
   },
-  { name: "Raghini Dhurve" },
-  { name: "Anshul Urkude" },
+  { name: "Raghini Dhurve", role: "Intern" },
+  { name: "Anshul Urkude", role: "Intern" },
 ];
