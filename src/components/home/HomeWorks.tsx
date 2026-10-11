@@ -94,7 +94,16 @@ export default function HomeWorks() {
           ))}
         </div>
 
-        <div className="mt-14 space-y-1 text-xs text-muted">
+        <a
+          href={site.rating.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-14 block text-xs text-muted hover:text-ink"
+        >
+          <span className="text-gold-deep">★ {site.rating.value}</span> ·{" "}
+          {site.rating.count} Google reviews
+        </a>
+        <div className="mt-3 space-y-1 text-xs text-muted">
           <a href={`mailto:${site.email}`} className="block hover:text-ink">
             {site.email}
           </a>

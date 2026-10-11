@@ -6,7 +6,7 @@ import { clients, testimonials } from "@/data/site";
 export const metadata: Metadata = {
   title: "Clients — Linestory Studio",
   description:
-    "The developers, hospitality groups and families Linestory Studio builds with.",
+    "Clients and Google reviews of Linestory Studio, architects and interior designers in Nagpur — rated 4.8 on Google.",
 };
 
 export default function ClientsPage() {
@@ -15,7 +15,7 @@ export default function ClientsPage() {
       <PageHeader
         label="Partners"
         title="Clients"
-        intro="We build long relationships — with families, developers, hospitality groups and public bodies who trust us to draw their next chapter."
+        intro="Families, workplaces and restaurants across Nagpur and beyond — rated 4.8 from 21 Google reviews."
       />
 
       {/* Logo wall */}
@@ -45,7 +45,7 @@ export default function ClientsPage() {
         <RevealGroup className="mt-12 grid gap-6 md:grid-cols-2">
           {testimonials.map((t) => (
             <figure
-              key={t.name}
+              key={t.quote}
               className="flex flex-col rounded-md border border-ink/10 p-8 md:p-10"
             >
               <span className="font-display text-4xl leading-none text-gold">

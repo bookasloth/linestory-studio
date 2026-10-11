@@ -6,7 +6,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Cursor from "@/components/Cursor";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import { site } from "@/data/site";
+import { site, team } from "@/data/site";
 
 // Weights trimmed to only what the UI actually uses — smaller font payload.
 const display = Fraunces({
@@ -25,19 +25,22 @@ const sans = Manrope({
 });
 
 const description =
-  "Linestory Studio is an architecture and interior design practice working across homes, hospitality and civic projects. Every line tells a story.";
+  "Linestory Studio is an architecture and interior design firm in Nagpur, led by Principal Architect Kewal Rewatkar — homes, workplaces and restaurant interiors. Rated 4.8 on Google.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "Linestory Studio — Architecture & Interiors",
+  title: "Linestory Studio — Architects & Interior Designers in Nagpur",
   description,
+  alternates: { canonical: "/" },
   keywords: [
     "architecture studio",
     "interior design",
-    "architects India",
+    "architects in Nagpur",
+    "interior designers in Nagpur",
+    "office interior design Nagpur",
+    "restaurant interior design",
     "residential architecture",
-    "hospitality design",
-    "master planning",
+    "Kewal Rewatkar",
     "Linestory Studio",
   ],
   openGraph: {
@@ -59,7 +62,8 @@ export const metadata: Metadata = {
 // Organization structured data for rich results.
 const orgJsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": ["ProfessionalService", "LocalBusiness"],
+  "@id": `${site.url}/#studio`,
   name: site.name,
   description,
   url: site.url,
@@ -73,8 +77,21 @@ const orgJsonLd = {
     addressRegion: "Maharashtra",
     addressCountry: "IN",
   },
-  areaServed: "IN",
-  knowsAbout: ["Architecture", "Interior Design", "Master Planning"],
+  areaServed: ["Nagpur", "Maharashtra", "IN"],
+  knowsAbout: ["Architecture", "Interior Design", "Office Interiors", "Restaurant Interiors"],
+  founder: {
+    "@type": "Person",
+    name: team[0].name,
+    jobTitle: team[0].role,
+    sameAs: [team[0].href],
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: site.rating.value,
+    reviewCount: site.rating.count,
+    bestRating: 5,
+  },
+  hasMap: site.rating.href,
   sameAs: site.socials.map((s) => s.href),
 };
 

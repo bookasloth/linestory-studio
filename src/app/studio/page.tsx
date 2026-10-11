@@ -3,7 +3,6 @@ import PageHeader from "@/components/PageHeader";
 import { Reveal, RevealGroup } from "@/components/Reveal";
 import WeaveMark from "@/components/WeaveMark";
 import Media from "@/components/Media";
-import { avatar } from "@/lib/images";
 import { team, awards } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -99,23 +98,23 @@ export default function StudioPage() {
         </Reveal>
         <RevealGroup className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4">
           {team.map((m, i) => (
-            <div key={m.name} data-cursor className="group">
+            <a key={m.name} href={m.href} target="_blank" rel="noopener noreferrer" data-cursor className="group">
               <div className="aspect-[4/5] overflow-hidden rounded-md bg-cream-deep">
                 <div className="h-full w-full transition-transform duration-700 group-hover:scale-105">
-                  <Media src={avatar(m.name)} alt={m.name} label={m.name} index={i} />
+                  <Media alt={m.name} label={m.name} index={i} />
                 </div>
               </div>
               <h3 className="mt-4 font-display text-xl font-light text-ink">
                 {m.name}
               </h3>
-              <p className="text-sm text-muted">{m.role}</p>
-            </div>
+              <p className="text-sm text-muted">{m.role} · LinkedIn ↗</p>
+            </a>
           ))}
         </RevealGroup>
       </section>
 
       {/* Awards */}
-      <section className="border-t border-ink/10">
+      {awards.length > 0 && <section className="border-t border-ink/10">
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
           <Reveal>
             <span className="text-xs font-medium uppercase tracking-[0.4em] text-ink-soft">
@@ -139,7 +138,7 @@ export default function StudioPage() {
             ))}
           </ul>
         </div>
-      </section>
+      </section>}
     </main>
   );
 }

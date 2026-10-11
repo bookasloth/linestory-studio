@@ -10,7 +10,10 @@ export const site = {
   socials: [
     { label: "Instagram", href: "https://www.instagram.com/linestorystudio" },
     { label: "Facebook", href: "https://www.facebook.com/linestorystudio" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/linestory-studio/" },
   ],
+  // From the Google Business Profile — update when the count changes.
+  rating: { value: 4.8, count: 21, href: "https://share.google/7EwEiNB8v20Qkjxlm" },
 };
 
 export const nav = [
@@ -23,70 +26,46 @@ export const nav = [
 export const services = [
   {
     title: "Architecture",
-    body: "Homes, hospitality and civic buildings drawn from site, light and the way people actually live.",
+    body: "Homes and buildings drawn from site, light and the way people actually live — within the client's budget and priorities.",
   },
   {
     title: "Interiors",
-    body: "Interiors detailed to the millimetre — material, joinery and light composed into a single mood.",
+    body: "Workplace, hospitality and home interiors — material, joinery and light composed into a single mood.",
   },
   {
-    title: "Master Planning",
-    body: "Neighbourhoods and campuses woven into walkable, climate-responsive public fabric.",
+    title: "Consultancy",
+    body: "Well-informed, holistic architectural consultancy from first brief to site.",
   },
 ];
 
-export const clients = [
-  "TAO Hospitality",
-  "Riverbend Resorts",
-  "Adani Realty",
-  "Godrej Properties",
-  "Municipal Dev. Authority",
-  "Kalpataru",
-  "Oberoi Hotels",
-  "Prestige Group",
-  "Lodha",
-  "Tata Housing",
-  "Brigade",
-  "Sobha",
-];
+// Project clients (names as published on the work pages).
+export const clients = ["Eureka", "Greamio", "Saraswati Veg", "Bridge House"];
 
+// Real Google reviews (short excerpts, reviewer names not shown).
 export const testimonials = [
   {
-    quote:
-      "Linestory read our lives better than we could describe them. The house they drew feels inevitable — like it was always meant to stand there.",
-    name: "Ananya & Rohit Deshpande",
-    role: "Orange House, Nagpur",
+    quote: "Best portion of building is office — this is a brilliant work from architecture.",
+    name: "Google review",
+    role: "Verified Google reviewer",
   },
   {
-    quote:
-      "They turned a difficult corner plot into the most photographed restaurant in the neighbourhood. Every detail earns its place.",
-    name: "Kabir Mehta",
-    role: "Director, TAO Hospitality",
+    quote: "Detailed, creative and understanding services available. Must get the service.",
+    name: "Google review",
+    role: "Verified Google reviewer",
   },
   {
-    quote:
-      "Rigorous, calm and completely on budget. The master plan gave our quarter a public life it never had.",
-    name: "S. Raghavan",
-    role: "Municipal Development Authority",
-  },
-  {
-    quote:
-      "A studio that listens first and draws second. The retreat sits so lightly on the land you almost miss it.",
-    name: "Meera Nair",
-    role: "Riverbend Resorts",
+    quote: "What a great architecture… at our budget… great work.",
+    name: "Google review",
+    role: "Verified Google reviewer",
   },
 ];
 
-export const awards = [
-  { year: "2024", title: "AD100 India — Studios to Watch" },
-  { year: "2023", title: "IIID Design Excellence — Hospitality" },
-  { year: "2023", title: "Archdaily Building of the Year — Nominee" },
-  { year: "2022", title: "FOAID Young Practice Award" },
-];
+export const awards: { year: string; title: string }[] = [];
 
 export const team = [
-  { name: "Aarav Kulkarni", role: "Principal Architect" },
-  { name: "Isha Rao", role: "Design Director" },
-  { name: "Neel Verma", role: "Associate, Interiors" },
-  { name: "Tara Menon", role: "Project Architect" },
+  {
+    name: "Kewal Rewatkar",
+    role: "Principal Architect",
+    href: "https://www.linkedin.com/in/kewal-rewatkar-17095b119",
+  },
 ];

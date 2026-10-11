@@ -1,0 +1,15 @@
+# Linestory Studio
+
+> Architecture and interior design firm in Nagpur, Maharashtra, India. Principal Architect: Kewal Rewatkar. Rated 4.8 from 21 Google reviews. Designs homes, workplaces and restaurant interiors to the client's budget and priorities.
+
+- Address: 301, Third Floor, Mauli Niwas, Plot No. 54, Banarjee Layout, Nalanda Nagar, Rameshwari, Nagpur, Maharashtra 440027
+- Phone: +91 86682 76513
+- Instagram: https://www.instagram.com/linestorystudio
+- LinkedIn: https://www.linkedin.com/company/linestory-studio/
+
+## Pages
+
+- [Work](/work/): selected projects — Eureka 3.0 (office interior, Pune), Eureka 1.0 and 2.0 (office interiors), Greamio (office interior), Saraswati Veg (restaurant), Bridge House (residence, Nagpur)
+- [Studio](/studio/): practice and team
+- [Clients](/clients/): clients and Google reviews
+- [Contact](/contact/): address, phone, enquiry form
