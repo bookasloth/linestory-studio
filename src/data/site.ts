@@ -39,7 +39,15 @@ export const services = [
 ];
 
 // Project clients (names as published on the work pages).
-export const clients = ["Eureka", "Greamio", "Saraswati Veg", "Bridge House"];
+export const clients = [
+  "Eureka",
+  "Greamio",
+  "Cloudblitz",
+  "Fireblaze",
+  "Rankbrain",
+  "Saraswati Veg",
+  "Bridge House",
+];
 
 // Real Google reviews, lightly trimmed from the Google Business Profile.
 export const testimonials = [
