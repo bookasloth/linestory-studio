@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import { site } from "@/data/site";
+import { enquiryEmail } from "./email";
 
 // Sends contact-form enquiries through Hostinger SMTP.
 // Env (set in Vercel): SMTP_USER, SMTP_PASS; optional SMTP_HOST, SMTP_PORT, CONTACT_TO.
@@ -38,6 +39,7 @@ export async function POST(req: Request) {
       replyTo: { name, address: email },
       subject: `New enquiry from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nLocation: ${location || "-"}\n\n${message}`,
+      html: enquiryEmail(new URL(req.url).origin, { name, email, location, message }),
     });
     return Response.json({ ok: true });
   } catch (err) {
