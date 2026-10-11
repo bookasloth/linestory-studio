@@ -119,24 +119,17 @@ export default async function ProjectPage({
 
       {/* Gallery */}
       <section className="mx-auto max-w-7xl px-6 pb-24">
-        <div className="grid gap-4 md:grid-cols-2">
+        {/* Full photos at their own proportions — no cropping. */}
+        <div className="space-y-6">
           {gallery.map((img, i) => (
-            <Reveal
-              key={i}
-              className={i === 0 ? "md:col-span-2" : ""}
-            >
-              <div
-                className={`overflow-hidden rounded-md bg-cream-deep ${
-                  i === 0 ? "aspect-[16/9]" : "aspect-[4/3]"
-                }`}
-              >
-                <Media
-                  src={img}
-                  alt={`${p.title} — view ${i + 1}`}
-                  label={p.title}
-                  index={idx + i}
-                />
-              </div>
+            <Reveal key={i}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={img}
+                alt={`${p.title} — view ${i + 1}`}
+                loading="lazy"
+                className="mx-auto block h-auto max-h-[90vh] w-auto max-w-full rounded-md"
+              />
             </Reveal>
           ))}
         </div>

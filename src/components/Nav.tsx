@@ -12,17 +12,8 @@ gsap.registerPlugin(useGSAP);
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const [solid, setSolid] = useState(false);
   const pathname = usePathname();
   const menu = useRef<HTMLDivElement>(null);
-
-  // Solidify the bar after leaving the very top of the page.
-  useGSAP(() => {
-    const onScroll = () => setSolid(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Park the overlay off-screen once on mount (no inline display juggling,
   // so the md:hidden class always wins on desktop).
@@ -59,11 +50,7 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        solid
-          ? "border-b border-ink/10 bg-cream/85 backdrop-blur-md"
-          : "border-b border-transparent"
-      }`}
+      className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-cream"
     >
       <div className="relative z-50 mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Logo />

@@ -65,6 +65,18 @@ export default function ContactPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* Full-width map (keyless embed) */}
+      <section aria-label="Studio location map" className="w-full">
+        <iframe
+          title="Linestory Studio on Google Maps"
+          src={`https://www.google.com/maps?q=${encodeURIComponent(`${site.name}, ${site.address}`)}&output=embed`}
+          className="block h-[60vh] min-h-96 w-full border-0"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+        />
+      </section>
     </main>
   );
 }
