@@ -29,18 +29,27 @@ export default function Logo({ light = false }: { light?: boolean }) {
           <WeaveMark className="h-full w-full" />
         )}
       </span>
-      <span
-        className={`flex flex-col items-center leading-none ${
-          light ? "text-cream" : "text-ink"
-        }`}
-      >
-        <span className="font-display text-lg font-normal tracking-[0.14em]">
-          LINESTORY
+      {light ? (
+        // Navy artwork doesn't read on the dark footer — text version there.
+        <span className="flex flex-col items-center leading-none text-cream">
+          <span className="font-display text-lg font-normal tracking-[0.14em]">
+            LINESTORY
+          </span>
+          <span className="-mt-px text-[9px] font-medium tracking-[0.55em] opacity-70">
+            STUDIO
+          </span>
         </span>
-        <span className="-mt-px text-[9px] font-medium tracking-[0.55em] opacity-70">
-          STUDIO
-        </span>
-      </span>
+      ) : (
+        // Real wordmark, cropped from the logo artwork.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-wordmark.png`}
+          alt=""
+          width={600}
+          height={113}
+          className="h-9 w-auto"
+        />
+      )}
     </Link>
   );
 }
