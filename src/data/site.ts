@@ -87,6 +87,6 @@ export const team: { name: string; role?: string; href?: string }[] = [
     href: "https://www.linkedin.com/in/kewal-rewatkar-17095b119",
   },
   { name: "Raghini Dhurve", role: "Intern" },
+  { name: "Chaitanya Chikhale", role: "Jr. Architect" },
   { name: "Anshul Urkude", role: "Intern" },
-  { name: "Chaitanya Chikhale", role: "Intern" },
 ];
